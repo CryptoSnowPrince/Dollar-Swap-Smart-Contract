@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+.address
+contracts/AnniversaryAchievement.sol
+contracts/Greeter.sol
+contracts/PancakeProfile.sol
+contracts/Token.sol
+scripts/deploy.ts
+scripts/deployToken.ts
