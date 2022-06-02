@@ -109,3 +109,7 @@ contracts/PancakeProfile.sol
 contracts/Token.sol
 scripts/deploy.ts
 scripts/deployToken.ts
+artifacts/
+typechain/
+package-lock.json
+cache/
