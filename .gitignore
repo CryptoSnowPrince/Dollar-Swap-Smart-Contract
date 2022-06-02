@@ -113,3 +113,7 @@ artifacts/
 typechain/
 package-lock.json
 cache/
+test/Token.ts
+contracts/SendNativeAndERC20.sol
+scripts/deploySendNativeAndERC20.ts
+test/SendNativeAndERC20.ts
