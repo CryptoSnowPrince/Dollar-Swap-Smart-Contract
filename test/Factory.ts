@@ -1,13 +1,15 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-import factoryABI from "../artifacts/contracts/SendNativeAndERC20.sol/SendNativeAndERC20.json"
+import factoryABI from "../artifacts/contracts/DollarswapFactory.sol/DollarswapFactory.json"
+import pairABI from "../artifacts/contracts/DollarswapPair.sol/DollarswapPair.json"
 
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
 import { Contract } from "ethers";
 
 let accountList: SignerWithAddress[];
 let factory: Contract;
+let pair: Contract;
 
 before(async function () {
     accountList = await ethers.getSigners();
@@ -17,52 +19,23 @@ before(async function () {
 
 describe("Factory", function () {
     it("Factory pair length", async function() {
-        const         
-    });
+        const length = await factory.connect(accountList[0]).allPairsLength();
+        console.log(length);
 
-    // it("RBA Transfer", async function () {
-    //     console.log("RBA Transfer start");
-    //     // expect(await sendNativeAndERC20.connect(accountList[0]).distributeETH(list, { value: ethers.utils.parseEther("2") }))
-    //     //     .to.emit(sendNativeAndERC20, "LogDistributeETH")
-
-    //     console.log("RBA Transfer end");
-    // });
-
-    // it("ERC20 Transfer", async function () {
-    //     console.log("ERC20 Transfer start");
-
-    //     console.log("ERC20 Transfer end");
-    // });
-
-
-    // it("withdrawETH Test1", async function () {
-    //     console.log("withdrawETH start");
-    //     const tx = await sendNativeAndERC20.connect(accountList[0]).withdrawETH(accountList[0].address, 1);
-    //     console.log("tx: ", tx);
-    //     const ret = await tx.wait();
-    //     console.log("ret: ", ret);
-
-    //     expect(ret).to.emit(sendNativeAndERC20, "adafds").withArgs(accountList[0].address, 100);
-
-    //     console.log("withdrawETH end");
-    // });
-
-    it("withdrawETH Test1", async function () {
-        console.log("withdrawETH start");
-        this.SendNativeAndERC20 = await ethers.getContractFactory("SendNativeAndERC20");
-        sendNativeAndERC20 = await this.SendNativeAndERC20.deploy();
-        await sendNativeAndERC20.deployed();
-        // const tx = await sendNativeAndERC20.connect(accountList[0]).withdrawETH(accountList[0].address, 0);
-        // console.log("tx: ", tx);
-        // const ret = await tx.wait();
-        // console.log("ret: ", ret);
-
-        // expect(ret).to.emit(sendNativeAndERC20, "adafds").withArgs(accountList[0].address, 100);
-
-        await expect(sendNativeAndERC20.connect(accountList[0]).withdrawETH(accountList[0].address, 0))
-            .to.emit(sendNativeAndERC20, "LogDistributeETH")
-
-
-        console.log("withdrawETH end");
+        let pairAddress;
+        let token0;
+        let token1;
+        let totalSupply;
+        for(let i = 0; i < length; i++) {
+            pairAddress = await factory.connect(accountList[0]).allPairs(i);
+            console.log("pair[%d]:", i, pairAddress);
+            pair = new ethers.Contract(pairAddress.toString(), pairABI.abi, this.provider)
+            token0 = await pair.connect(accountList[0]).token0()
+            token1 = await pair.connect(accountList[0]).token1()
+            totalSupply = await pair.connect(accountList[0]).totalSupply()
+            console.log("  token0: ", token0)
+            console.log("  token1: ", token1)
+            console.log("  totalSupply: ", totalSupply)
+        }
     });
 });
