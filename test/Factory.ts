@@ -35,7 +35,7 @@ describe("Factory", function () {
             totalSupply = await pair.connect(accountList[0]).totalSupply()
             console.log("  token0: ", token0)
             console.log("  token1: ", token1)
-            console.log("  totalSupply: ", totalSupply)
+            console.log("  totalSupply: ", ethers.utils.formatEther(totalSupply))
         }
     });
 });
