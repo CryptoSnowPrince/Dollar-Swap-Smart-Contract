@@ -14,8 +14,10 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
+
+  const _feeToSetter = "0x1e3cc205a642Ad3E94746Dd3e232dBc9c40d0395";
   const DollarswapFactory = await ethers.getContractFactory("DollarswapFactory");
-  const dollarswapFactory = await DollarswapFactory.deploy("0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b");
+  const dollarswapFactory = await DollarswapFactory.deploy(_feeToSetter);
 
   await dollarswapFactory.deployed();
 
