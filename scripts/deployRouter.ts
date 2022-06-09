@@ -13,8 +13,8 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
-  const factory = "0xDe7ab60427914b4d240CE33F200eb17FE6d0B9AA";
-  const WTRM = "0x918f0C3B01d5aC7E2fcBbcEB63616227E96d8FE7"
+  const factory = "0xB0a39D8306b552B4E58b0a0174d817b8c5F2C91d";
+  const WTRM = "0x238F5666A0f12c571B7B3fBd5b5a434146dFa0C5"
   // We get the contract to deploy
   const DollarswapRouter02 = await ethers.getContractFactory("DollarswapRouter02");
   const dollarswapRouter02 = await DollarswapRouter02.deploy(factory, WTRM);

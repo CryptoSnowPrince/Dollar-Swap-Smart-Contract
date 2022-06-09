@@ -117,3 +117,4 @@ test/Token.ts
 contracts/SendNativeAndERC20.sol
 scripts/deploySendNativeAndERC20.ts
 test/SendNativeAndERC20.ts
+json_input.json
