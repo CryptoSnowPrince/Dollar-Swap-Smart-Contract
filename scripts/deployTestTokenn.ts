@@ -13,20 +13,14 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
-  let factory = "0xB0a39D8306b552B4E58b0a0174d817b8c5F2C91d";
-  factory = factory.toLowerCase();
-  console.log(factory);
-  let WTRM = "0x238F5666A0f12c571B7B3fBd5b5a434146dFa0C5"
-  WTRM = WTRM.toLowerCase();
-  console.log(WTRM);
   // We get the contract to deploy
-  const DollarswapRouter02 = await ethers.getContractFactory("DollarswapRouter02");
-  const dollarswapRouter02 = await DollarswapRouter02.deploy();
-  // const dollarswapRouter02 = await DollarswapRouter02.deploy(factory, WTRM);
+  const TestTokennn = await ethers.getContractFactory("TestTokennn");
+  // const token = await TestTokennn.deploy("0x69000D6Da4eedf452a1e2048BEeEc901BcdCE82E");
+  const token = await TestTokennn.deploy();
 
-  await dollarswapRouter02.deployed();
+  await token.deployed();
 
-  console.log("DollarswapRouter02 deployed to:", dollarswapRouter02.address);
+  console.log("TestTokennn deployed to:", token.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
